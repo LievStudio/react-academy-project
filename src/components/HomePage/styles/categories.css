@@ -1,0 +1,18 @@
+.btns-container {
+  height: 100%;
+  padding: 1px 1px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.btns-container .category-button {
+  min-width: 90px;
+  min-height: 50px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  text-transform: initial;
+}

@@ -1,0 +1,109 @@
+.post {
+  overflow: hidden;
+  position: relative;
+  height: 360px;
+}
+
+.posts-list {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.posts-list .post-item {
+  position: relative;
+  width: 50%;
+  font-family: "Source Sans Pro";
+  color: #fff;
+  overflow: hidden;
+}
+
+.post-background {
+  height: 360px;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.2) inset;
+  transition: all 350ms ease-in-out;
+  cursor: pointer;
+}
+.post-background:hover {
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4) inset;
+}
+.post-background:hover h3:before {
+  width: 100px;
+}
+
+.post-content {
+  position: absolute;
+  bottom: 0;
+  padding: 30px;
+}
+
+.post-content h3 {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 42px;
+  margin-bottom: 20px;
+}
+
+.post-content h3:before {
+  transition: all 0.5s;
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  height: 8px;
+  width: 0;
+  background-color: #fff;
+  left: 0;
+  right: 0;
+}
+
+.count {
+  font-style: italic;
+  font-size: 16px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.post-shortdescription {
+  font-size: 16px;
+  line-height: 22px;
+  width: 75%;
+  padding-bottom: 20px;
+}
+
+.post-category {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.post-actions {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.post .post-actions .edit-icon {
+  margin-right: 20px;
+}
+
+.post:hover .post-actions {
+  transition: 0.5s all;
+  visibility: visible;
+  opacity: 1;
+}
+
+.post .comment-icon {
+  margin-left: 4px;
+  font-size: 15px;
+}

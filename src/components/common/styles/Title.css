@@ -1,0 +1,39 @@
+.page-title {
+  padding-top: 45px;
+  padding-bottom: 45px;
+  text-align: center;
+}
+
+.page-title h2 {
+  margin: 0;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.page-title .title-helper {
+  display: inline-block;
+  position: relative;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 18px;
+  color: coral;
+}
+
+.page-title .title-helper:before,
+.page-title .title-helper:after {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 10px;
+  height: 30px;
+  content: "";
+  border: 2px solid coral;
+}
+.page-title .title-helper:before {
+  left: 0;
+  border-right: none;
+}
+.page-title .title-helper:after {
+  right: 0;
+  border-left: none;
+}

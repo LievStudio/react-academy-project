@@ -1,0 +1,8 @@
+.fab-edit {
+  color: coral;
+  background-color: coral;
+  position: fixed;
+  top: "138px";
+  right: "20px";
+  z-index: "1";
+}

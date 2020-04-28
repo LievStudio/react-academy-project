@@ -1,0 +1,118 @@
+.post-detail {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 60px;
+  background-color: rgba(71, 71, 71, 0.1);
+}
+
+.post-detail .hero-banner {
+  min-height: 540px;
+  width: 100%;
+  padding: 40px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4) inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  position: relative;
+}
+
+.post-detail .fab-back-icon {
+  transition: 300ms;
+  position: absolute;
+  font-size: 40px;
+  text-decoration: none;
+  top: 50px;
+  left: 50px;
+  background-color: coral;
+  opacity: 0.9;
+}
+.post-detail .fab-back-icon:hover {
+  transition: 300ms ease-in-out;
+  background-color: coral;
+  opacity: 1;
+}
+.post-detail .back-icon {
+  transition: 300ms;
+  font-size: 50px;
+  text-decoration: none;
+  color: white;
+  position: absolute;
+  padding-bottom: 43px;
+}
+
+.post-detail .title {
+  color: white;
+  font-size: 4.5rem;
+}
+
+.post-detail .body {
+  width: 80%;
+}
+
+.post-detail .body .description {
+  width: 100%;
+  font-size: 2.3rem;
+  line-height: inherit;
+}
+
+.comments-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.comments-container .comments-title {
+  font-size: 2rem;
+}
+
+.comments-container .comment-item {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  border: 2px solid rgba(0, 0, 0, 0.09);
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.comments-container .comment-item .icon .icon-account {
+  font-size: 40px;
+}
+
+.comment-item-content {
+  margin-left: 10px;
+}
+
+.comment-item-content .author {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.comment-item-content .comment {
+  font-size: 1.2rem;
+}
+
+.comment-form {
+  align-content: center;
+}
+
+.comment-form .field-full-width {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+.comment-form .field-half-width {
+  width: 50%;
+  margin-top: 20px;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+}
