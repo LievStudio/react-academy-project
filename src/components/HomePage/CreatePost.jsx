@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { NativeSelect, FormHelperText } from "@material-ui/core";
@@ -15,7 +14,7 @@ const CreatePost = (props) => {
   const randomImage = Math.floor(Math.random() * 100);
   const [errors, setErrors] = useState({});
   const [_post, _setPost] = useState({
-    id: "",
+    id: randomImage,
     title: "",
     shortDescription: "",
     description: "",
@@ -23,10 +22,6 @@ const CreatePost = (props) => {
     image: `https://source.unsplash.com/random?sig=${randomImage}`,
     comments: [],
   });
-
-  // useEffect(() => {
-  //   post.id && setPost(props.post);
-  // }, []);              USA USEREDUCER para editPost
 
   function handleChange({ target }) {
     _setPost({
@@ -74,9 +69,6 @@ const CreatePost = (props) => {
           Create Post
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Use this form to create a new post
-          </DialogContentText>
           <form onSubmit={handleSave} autoComplete="off">
             <TextField
               required

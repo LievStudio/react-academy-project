@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import EditButton from "./EditButton";
 import Categories from "./Categories";
 import PostList from "./PostList";
@@ -8,7 +8,8 @@ import EditPost from "./EditPost";
 import "../../styles/App.css";
 
 const HomePage = (props) => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);  trying to useReducer instead of useState for stateful posts variable
+  let posts = [];
   const [post, setPost] = useState({
     id: "",
     title: "",
@@ -25,8 +26,22 @@ const HomePage = (props) => {
 
   const fetchPosts = async () => {
     const result = await postsApi.getPosts();
-    setPosts(result.data);
+    // setPosts(result.data); remove temporarily setPosts since this was initialized with useState
+    posts = result.data;
   };
+
+  // const postsAction = {
+  //   type: "EDIT_POST"
+  // };
+
+  const postsReducer = (state, action) => {
+    switch (action.type) {
+      case "ADD_POST":
+        return state.push(receivedPost);
+    }
+  };
+
+  const [state, dispatch] = useReducer(postsReducer, posts);
 
   useEffect(() => {
     fetchPosts();
@@ -59,23 +74,24 @@ const HomePage = (props) => {
   const fetchPost = (id) => {
     console.log(post);
     let postFetched = posts.find((_post) => _post.id === id);
-    setPost({ ...postFetched });
+    setPost(postFetched);
     handleEditOpen();
   };
 
   const addPost = (receivedPost) => {
     postsApi.createPost(receivedPost);
-    // posts.push(receivedPost);
-    setPosts([...posts, receivedPost]);
+    posts.push(receivedPost);
+    setPosts(posts);
   };
 
-  const editPost = (editedPost) => {
-    postsApi.editPost(editedPost);
-    let editedPosts = posts.map((post) =>
-      editedPost.id === post.id ? editedPost : post
-    );
+  const editPost = (post) => {
+    postsApi.editPost(post);
+    // metodo de array para editar un post y actualizar el posts en memoria
+    let modifiedId = posts.findIndex((postId) => postId === post.id);
+    posts[modifiedId] = post;
     // actualizar el stateful posts con setPosts()
-    setPosts([...editedPosts]); // changed from setPosts(posts) to setPosts([...posts])
+    setPosts(posts);
+    console.log(posts[modifiedId]);
   };
 
   const handleDelete = (id) => {

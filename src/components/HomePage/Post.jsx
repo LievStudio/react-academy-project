@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
 import EditPostIcon from "./EditPostIcon";
@@ -7,6 +7,11 @@ import "./styles/posts.css";
 
 const Post = (props) => {
   const [isShown, setIsShown] = useState(false);
+  const [post, setPost] = useState(props.post);
+
+  useEffect(() => {
+    setPost(props.post);
+  }, [props.post]);
 
   return (
     <div
@@ -15,24 +20,22 @@ const Post = (props) => {
       className="post"
     >
       <Link
-        to={"/post/" + props.post.id}
+        to={"/post/" + post.id}
         style={{ textDecoration: "none", color: "white" }}
       >
         <div
           className="post-background"
-          style={{ backgroundImage: `url(${props.post.image})` }}
+          style={{ backgroundImage: `url(${post.image})` }}
         >
           <div className="post-content">
-            <h3>{props.post.title}</h3>
+            <h3>{post.title}</h3>
             <div className="post-comments">
-              {props.post.comments.length}{" "}
-              {props.post.comments.length === 1 ? "Comment " : "Comments "}
+              {post.comments.length}{" "}
+              {post.comments.length === 1 ? "Comment " : "Comments "}
               <QuestionAnswerOutlinedIcon></QuestionAnswerOutlinedIcon>
             </div>
-            <p className="post-shortdescription">
-              {props.post.shortDescription}
-            </p>
-            <h4 className="post-category">{props.post.category}</h4>
+            <p className="post-shortdescription">{post.shortDescription}</p>
+            <h4 className="post-category">{post.category}</h4>
           </div>
         </div>
       </Link>
@@ -40,7 +43,7 @@ const Post = (props) => {
       {isShown && (
         <div className="post-actions">
           <EditPostIcon
-            postId={props.post.id}
+            postId={post.id}
             onClick={props.onClick}
             handleOpen={props.handleOpen}
             fetchPost={props.fetchPost}
@@ -48,7 +51,7 @@ const Post = (props) => {
           <DeletePost
             onClick={props.onClick}
             onDelete={props.onDelete}
-            id={props.post.id}
+            id={post.id}
           />
         </div>
       )}

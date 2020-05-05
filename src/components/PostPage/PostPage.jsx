@@ -9,11 +9,6 @@ import WriteComment from "./WriteComment";
 const PostPage = (props) => {
   const [post, setPost] = useState({});
   const [postComments, setPostComments] = useState([]);
-  const [newComments, setNewComments] = useState({
-    id: null,
-    content: "",
-    author: "",
-  });
 
   useEffect(() => {
     const postId = props.match.params.id;
@@ -27,16 +22,17 @@ const PostPage = (props) => {
 
   // const handleOnClick = () => props.history.push("/");
 
-  const handleChange = ({ target }) => {
-    setNewComments({
-      ...newComments,
-      [target.name]: target.value,
+  const addComment = (newComment) => {
+    setPostComments([...postComments, newComment]);
+    setPost({
+      ...post,
+      [post.comments]: [...postComments],
     });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postsApi.addComments(newComments);
+    // call to API to save comment in backend
+    postsApi.editPost({
+      ...post,
+      [post.comments]: [...postComments],
+    });
   };
 
   return (
@@ -59,11 +55,7 @@ const PostPage = (props) => {
           <Comment key={comment.id} comment={comment} />
         ))}
       </div>
-      <WriteComment
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        newComments={newComments}
-      />
+      <WriteComment addComment={addComment} />
     </div>
   );
 };

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import "./styles/posts.css";
 
 const PostList = (props) => {
+  const [posts, setPosts] = useState(props.posts);
+
+  useEffect(() => {
+    setPosts(props.posts);
+  }, [props.posts]);
+
   return (
     <>
       {props.activeCategory === "all"
-        ? props.posts.map((post) => (
+        ? posts.map((post) => (
             <div key={post.id} className="post-item">
               <Post
                 post={post}
@@ -16,7 +22,7 @@ const PostList = (props) => {
               />
             </div>
           ))
-        : props.posts
+        : posts
             .filter((post) => post.category === props.activeCategory)
             .map((post) => (
               <div key={post.id} className="post-item">

@@ -1,3 +1,7 @@
 .create-dialog .dialog-field {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.edit-dialog .dialog-field {
+  margin-bottom: 30px;
 }

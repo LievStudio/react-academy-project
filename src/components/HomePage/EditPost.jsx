@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { NativeSelect, FormHelperText } from "@material-ui/core";
@@ -17,8 +16,8 @@ const EditPost = (props) => {
   const [post, setPost] = useState(props.post);
 
   useEffect(() => {
-    post.id && setPost(props.post);
-  }, [post.id, props.post]);
+    setPost(props.post);
+  }, [props.post]);
 
   function handleChange({ target }) {
     setPost({
@@ -66,7 +65,6 @@ const EditPost = (props) => {
           Edit Post
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>Use this form to edit the post</DialogContentText>
           <form onSubmit={handleSave} autoComplete="off">
             <TextField
               required
@@ -158,6 +156,8 @@ const EditPost = (props) => {
             Save
           </Button>
         </DialogActions>
+        {props.post.title}
+        {post.title || " no title"}
       </Dialog>
     </>
   );

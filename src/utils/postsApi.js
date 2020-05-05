@@ -55,3 +55,18 @@ export async function editPost(post) {
     handleError(error);
   }
 }
+
+export async function addNewComment(postId, comments) {
+  try {
+    const response = await axios({
+      method: "put",
+      url: `${baseUrl}${postId}`,
+      data: {
+        comments,
+      },
+    });
+    console.log(response);
+  } catch (error) {
+    handleError(error);
+  }
+}
