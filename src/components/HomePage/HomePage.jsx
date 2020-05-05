@@ -5,6 +5,7 @@ import PostList from "./PostList";
 import * as postsApi from "../../utils/postsApi";
 import CreatePost from "./CreatePost";
 import EditPost from "./EditPost";
+import { toast } from "react-toastify";
 import "../../styles/App.css";
 
 const HomePage = (props) => {
@@ -67,6 +68,7 @@ const HomePage = (props) => {
     postsApi.createPost(receivedPost);
     // posts.push(receivedPost);
     setPosts([...posts, receivedPost]);
+    toast("Post created");
   };
 
   const editPost = (editedPost) => {
@@ -76,12 +78,14 @@ const HomePage = (props) => {
     );
     // actualizar el stateful posts con setPosts()
     setPosts([...editedPosts]); // changed from setPosts(posts) to setPosts([...posts])
+    toast("Post edited");
   };
 
   const handleDelete = (id) => {
     let newPosts = posts.filter((post) => post.id !== id);
     setPosts(newPosts);
     postsApi.deletePost(id);
+    toast("Post deleted");
   };
 
   return (

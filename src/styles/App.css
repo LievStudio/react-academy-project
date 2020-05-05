@@ -9,3 +9,7 @@
 .header {
   align-items: center;
 }
+
+.toast-custom {
+  background-color: coral;
+}
