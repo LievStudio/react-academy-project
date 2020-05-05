@@ -30,14 +30,27 @@ const CreatePost = (props) => {
     });
   }
 
+  const handleClose = () => {
+    props.onCancel();
+    _setPost({
+      id: randomImage,
+      title: "",
+      shortDescription: "",
+      description: "",
+      category: "",
+      image: `https://source.unsplash.com/random?sig=${randomImage}`,
+      comments: [],
+    });
+    setErrors({});
+  };
+
   function formIsValid() {
     const _errors = {};
 
     if (!_post.title) _errors.title = "Title is required";
     if (!_post.shortDescription)
       _errors.shortDescription = "Short Description is required";
-    if (!_post.description)
-      _errors.description = "Short Description is required";
+    if (!_post.description) _errors.description = "Description is required";
     if (!_post.category) _errors.category = "Category is required";
     if (!_post.image) _errors.image = "Image URL is required";
 
@@ -53,13 +66,22 @@ const CreatePost = (props) => {
     // console.log("after form validation");
     props.addPost(_post);
     props.onCancel();
+    _setPost({
+      id: randomImage,
+      title: "",
+      shortDescription: "",
+      description: "",
+      category: "",
+      image: `https://source.unsplash.com/random?sig=${randomImage}`,
+      comments: [],
+    });
   };
 
   return (
     <>
       <Dialog
         open={props.state}
-        onClose={props.onCancel}
+        onClose={handleClose}
         disableBackdropClick={true}
         disableEscapeKeyDown={true}
         aria-labelledby="form-dialog-title"
@@ -153,7 +175,7 @@ const CreatePost = (props) => {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.onCancel} color="secondary">
+          <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
           <Button type="submit" onClick={handleSave} color="primary">

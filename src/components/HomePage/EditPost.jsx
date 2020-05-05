@@ -32,8 +32,7 @@ const EditPost = (props) => {
     if (!post.title) _errors.title = "Title is required";
     if (!post.shortDescription)
       _errors.shortDescription = "Short Description is required";
-    if (!post.description)
-      _errors.description = "Short Description is required";
+    if (!post.description) _errors.description = "Description is required";
     if (!post.category) _errors.category = "Category is required";
     if (!post.image) _errors.image = "Image URL is required";
 
@@ -156,8 +155,6 @@ const EditPost = (props) => {
             Save
           </Button>
         </DialogActions>
-        {props.post.title}
-        {post.title || " no title"}
       </Dialog>
     </>
   );
