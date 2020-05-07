@@ -7,8 +7,16 @@ import { Link } from "react-router-dom";
 import WriteComment from "./WriteComment";
 
 const PostPage = (props) => {
-  const [post, setPost] = useState({});
-  const [postComments, setPostComments] = useState([]);
+  const [post, setPost] = useState({
+    id: "",
+    title: "",
+    shortDescription: "",
+    description: "",
+    category: "",
+    image: "",
+    comments: [],
+  });
+  const [postComments, setPostComments] = useState(post.comments);
 
   useEffect(() => {
     const postId = props.match.params.id;
@@ -24,15 +32,10 @@ const PostPage = (props) => {
 
   const addComment = (newComment) => {
     setPostComments([...postComments, newComment]);
-    setPost({
-      ...post,
-      [post.comments]: [...postComments],
-    });
+    post.comments.push(newComment);
+    setPost({ ...post });
+    postsApi.editPost(post);
     // call to API to save comment in backend
-    postsApi.editPost({
-      ...post,
-      [post.comments]: [...postComments],
-    });
   };
 
   return (
